@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: lots-of-logs-
+spec:
+  entrypoint: genLogs
+  templates:
+  - name: genLogs
+    container:
+      image: docker/whalesay:latest
+      command: [bash, -c]
+      args: ["for i in {1..1000}; do echo 'The force is strong in this one.'; done"]

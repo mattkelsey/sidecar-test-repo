@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-failing-
+spec:
+  entrypoint: whalesay
+  templates:
+  - name: whalesay
+    container:
+      image: python:alpine3.6
+      command: ["python", -c]
+      # fail... bash 'exit' is not available
+      args: ["import sys; sys.exit(1)"]
